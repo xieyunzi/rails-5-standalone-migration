@@ -1,0 +1,21 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  collation: utf8_unicode_ci
+  timeout: 5000
+  username: <%= ENV['MS_USERNAME'] %>
+  password: <%= ENV['MS_PASSWORD'] %>
+  host: <%= ENV['MS_HOST'] %>
+  port: 3306
+
+test:
+  <<: *default
+  database: dxrs_user_test
+
+development:
+  <<: *default
+  database: dxrs_user_dev
+
+production:
+  <<: *default
+  database: dxrs_user
