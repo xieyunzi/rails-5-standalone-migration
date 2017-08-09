@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  rails-migrations:
+    build: .
+    image: xieyunzi/rails-5:2.4-alpine
+    environment:
+      MS_HOST: ${MS_HOST}
+      MS_USERNAME: ${MS_USERNAME}
+      MS_PASSWORD: ${MS_PASSWORD}
+      RAILS_ENV: ${RAILS_ENV}
+      DISABLE_DATABASE_ENVIRONMENT_CHECK: ${DISABLE_DATABASE_ENVIRONMENT_CHECK}
+    volumes:
+      - ./app:/app
+      - ./migrations/${APP_NAME}/migrate:/app/db/migrate
+      - ./migrations/${APP_NAME}/config.yml:/app/config/database.yml
+    working_dir: /app
+
+networks:
+  default:
+    external:
+      name: xz-bridge

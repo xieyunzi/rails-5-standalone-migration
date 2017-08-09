@@ -1,0 +1,3 @@
+app/db/structures.sql
+app/db/schema.rb
+app/Gemfile.lock
